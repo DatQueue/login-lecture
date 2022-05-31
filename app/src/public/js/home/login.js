@@ -4,8 +4,6 @@ const id = document.querySelector("#id");
 const psWord = document.querySelector("#psWord");
 const loginBtn = document.querySelector("button");
 
-console.log(id);
-
 loginBtn.addEventListener("click", () => {
   login();
 });
@@ -16,11 +14,13 @@ function login() {
     psWord: psWord.value,
   };
 
-  fetch("/login", {
+  fetch("http://localhost:3000/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(req),
-  });
+  })
+    .then((res) => res.json())
+    .then((res) => console.log(res));
 }
